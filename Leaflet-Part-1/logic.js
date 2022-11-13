@@ -35,90 +35,29 @@ function createFeatures(earthquakeData) {
   // Define a function that we want to run once for each feature in the features array.
   // Give each feature a popup that describes the place and time of the earthquake.
   function onEachFeature(feature, layer) {
-    layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>${new Date(feature.properties.time)}</p>`);
-    // layer.bindPopup(`<h3>${geometry.coordinates.2}</h3><hr><p>${new Date(feature.properties.time)}</p>`);
+    //layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>${new Date(feature.properties.time)}</p>`);
+    layer.bindPopup(`<h3>${feature.properties.mag}</h3><hr><p>${new Date(feature.properties.time)}</p>`);
   }
 
   // Create a GeoJSON layer that contains the features array on the earthquakeData object.
   // Run the onEachFeature function once for each piece of data in the array.
   var earthquakes = L.geoJSON(earthquakeData, {
+    
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng);
+
+      function markerSize(mag) {
+        return Math.sqrt(feature.properties.mag) * 50;
+      }
+
+    },
+    
     onEachFeature: onEachFeature
   });
 
   // Send our earthquakes layer to the createMap function/
   createMap(earthquakes);
 }
-
-
-// /// create GEOMETRY that reads the depth data from geometry>>coordinates>>2
-// function createGeometry(earthquakeData) {
-
-//   // Define a function that we want to run once for each feature in the features array.
-//   // Give each feature a popup that describes the place and time of the earthquake.
-//   function onEachFeature(geometry, layer) {
-//     layer.bindPopup(`<h3>${geometry.coordinates.2}</h3><hr><p>${new Date(feature.properties.time)}</p>`);
-    
-//   }
-
-//   // Create a GeoJSON layer that contains the features array on the earthquakeData object.
-//   // Run the onEachFeature function once for each piece of data in the array.
-//   var earthquakes = L.geoJSON(earthquakeData, {
-//     onEachFeature: onEachFeature
-//   });
-
-//   // Send our earthquakes layer to the createMap function/
-//   createMap(earthquakes);
-}
-
-
-
-
-
-
-/// ------------------ establishing a function that reads that data END  ------------------------------------
-
-
-// // Define arrays to hold the magnitude and depth (coordinates:2) markers.
-var magnitudeMarkers = [];
-var depthMarkers = [];
-
-// Loop through locations, and create the magnitude and depth markers.
-for (var i = 0; i < feature.length; i++) {
-
-  
-  // Set the marker radius for the city by passing the population to the markerSize() function.
-  magnitudeMarkers.push(
-    L.circle(geometry[i].coordinates, {
-      stroke: false,
-      fillOpacity: 0.75,
-      color: "purple",  // border color
-      fillColor: "purple",
-      radius: markerSize(geometry.properties[i].mag)
-    })
-  );
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -156,6 +95,8 @@ function createMap(earthquakes) {
     layers: [street, earthquakes]
   });
 
+
+
   // Create a layer control.
   // Pass it our baseMaps and overlayMaps.
   // Add the layer control to the map.
@@ -163,4 +104,5 @@ function createMap(earthquakes) {
     collapsed: false
   }).addTo(myMap);
 
+  
 }
