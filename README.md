@@ -1,4 +1,4 @@
-Please find the link to my earthquake visualization.
+Please find the link to my earthquake visualization.  The data is dynamically refeshed and encompassed includes all earthquake data captured over the last 7 days from the US geological survey. 
 
 The visualization uses earthquake data pulled in from the US Geological service.
 
