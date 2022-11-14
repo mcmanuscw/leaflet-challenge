@@ -127,13 +127,13 @@ function createMap(earthquakes) {
 
     legend.onAdd = function (map) {
       var div = L.DomUtil.create("div", "legend");
-      div.innerHTML += '<i style="background: #white"></i><span>&lt;10</span><br>';
-      div.innerHTML += '<i style="background: #yellow"></i><span>10-30</span><br>';
-      div.innerHTML += '<i style="background: #purple"></i><span>30-50</span><br>';
-      div.innerHTML += '<i style="background: #green"></i><span>50-70</span><br>';
-      div.innerHTML += '<i style="background: #blue"></i><span>70-90</span><br>';
-      div.innerHTML += '<i style="background: #red"></i><span>&gt;90</span><br>';
-      return div;
+    div.innerHTML += '<i style="background: "rgb(208,228,194)"></i><span>&lt;10</span><br>';
+    div.innerHTML += '<i style="background: "rgb(195,221,177)"></i><span>10-30</span><br>';
+    div.innerHTML += '<i style="background: "rgb(150,195,119)"></i><span>30-50</span><br>';
+    div.innerHTML += '<i style="background: "rgb(112,168,74)"></i><span>50-70</span><br>';
+    div.innerHTML += '<i style="background: "rgb(82,122,54)"></i><span>70-90</span><br>';
+    div.innerHTML += '<i style="background: "rgb(55,82,36)"></i><span>&gt;90</span><br>';
+    return div;
     };
   
     legend.addTo(myMap);
