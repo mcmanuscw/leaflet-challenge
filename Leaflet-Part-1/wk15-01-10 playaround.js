@@ -5,11 +5,8 @@
 // Store our API endpoint as queryUrl.
 //var queryUrl = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2021-01-01&endtime=2021-01-02&maxlongitude=-69.52148437&minlongitude=-123.83789062&maxlatitude=48.74894534&minlatitude=25.16517337";
 
-// data for the last month
-// var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson";
-
-// data for the "past day - significant earthquakes"   
-var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
+// data for the "last 7 days - M2.5 + "   
+var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson";
 
 
 // Perform a GET request to the query URL/
@@ -34,10 +31,6 @@ function createFeatures(earthquakeData) {
   // Create a GeoJSON layer that contains the features array on the earthquakeData object.
   // Run the onEachFeature function once for each piece of data in the array.
   var earthquakes = L.geoJSON(earthquakeData, {
-    
-    pointToLayer: function (feature, latlng) {
-      return L.circleMarker(latlng);
-    },
     onEachFeature: onEachFeature
   });
 
@@ -58,12 +51,14 @@ function createMap(earthquakes) {
     attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
   });
 
+  
   // Create a baseMaps object.
   var baseMaps = {
     "Street Map": street,
     "Topographic Map": topo
   };
 
+  
   // Create an overlay object to hold our overlay.
   var overlayMaps = {
     Earthquakes: earthquakes
@@ -78,7 +73,10 @@ function createMap(earthquakes) {
     layers: [street, earthquakes]
   });
 
-  // Create a layer control.
+  
+  
+  
+  // Create a layer control. Top right corner of page
   // Pass it our baseMaps and overlayMaps.
   // Add the layer control to the map.
   L.control.layers(baseMaps, overlayMaps, {

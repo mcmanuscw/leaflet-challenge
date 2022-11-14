@@ -1,3 +1,20 @@
+Please find the link to my earthquake visualization attached for part 1.
+
+The visualization uses earthquake data pulled in from the US Geological service.
+
+The markers are sized by magnitude and colored based on the depth of the earthquake with the deeper quakes shades being represented by darker quakes and shallower ones with lighter shades.
+
+My JS code is found within "logic.js". 
+
+I kept classroom reference materials files nearby within "Wk15-01-09/10 playaround.js" files but they are not part of the homework submission.
+
+Kind Regards,
+Chuck
+
+
+
+----------- Challenge Description ----------------------------------------
+
 # Unit 15 Homework: Visualizing Data with Leaflet
 
 ## Background
